@@ -5,6 +5,11 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import Login from './Pages/Login/Login';
+import UserHome from './Pages/UserHome/UserHome';
+import AdminHome from './Pages/AdminHome/AdminHome';
+import Error from './Pages/Error/Error';
+import CreatePost from './Pages/CreatePost/CreatePost';
+import GetPost from './Pages/GetPost/GetPost';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -12,6 +17,11 @@ ReactDOM.render(
       <Routes>
         <Route path="/" element={<App />} />
         <Route path="/login" element = {<Login/>} />
+        <Route path="/user" element = {<UserHome/>} />
+        <Route path="/admin" element = {<AdminHome/>} />
+        <Route path="/create" element = {<CreatePost/>} />
+        <Route path="/post/:id" element = {<GetPost/>} />
+        <Route path="*" element = {<Error/>} />
       </Routes>
       
     </BrowserRouter>

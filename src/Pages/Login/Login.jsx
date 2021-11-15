@@ -1,6 +1,6 @@
 const Login = () => {
     return(
-        <h1>Ola q tal</h1>
+        <h1>Ruta de Login</h1>
     );
 };
 
