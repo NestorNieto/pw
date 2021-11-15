@@ -20,7 +20,7 @@ ReactDOM.render(
         <Route path="/user" element = {<UserHome/>} />
         <Route path="/admin" element = {<AdminHome/>} />
         <Route path="/create" element = {<CreatePost/>} />
-        <Route path="/post/:id" element = {<GetPost/>} />
+        <Route path="/post/:postId" element = {<GetPost/>} />
         <Route path="*" element = {<Error/>} />
       </Routes>
       

@@ -1,6 +1,9 @@
+import { useParams } from "react-router";
 const GetPost = () => {
+    const params = useParams();
+    const { postId } = params;
     return(
-        <h1>Ruta de GetPost</h1>
+        <h1>Ruta de GetPost {postId}</h1>
     );
 };
 
