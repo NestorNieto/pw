@@ -13,13 +13,12 @@ const Login = () => {
         event.preventDefault();
         const success = await login(username, password);
         if(success === true){
-            const role1 = localStorage.getItem('role');
-            console.log(role1);
-            if(role1 === 'admin'){
-                console.log("ahuevo");
+            const updatedRole = localStorage.getItem('role');
+            console.log(updatedRole);
+            if(updatedRole === 'admin'){
                 navigate("/admin", {replace: true});
             }
-            else if(role1 === "user"){
+            else if(updatedRole === "user"){
                 navigate("/user", {replace: true});
             }
         }
@@ -51,7 +50,7 @@ const Login = () => {
     );
 
     if (role === 'admin') {
-        return <Navigate to="/admin" state= {{from : location}}/>
+        return <Navigate to="/admin"/>
     }
     else if(role === 'user'){
         return <Navigate to="/user"/>

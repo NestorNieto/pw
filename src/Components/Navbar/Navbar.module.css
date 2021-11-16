@@ -1,0 +1,22 @@
+.main_navbar{
+    margin: 0;
+    width: 100%;
+    background-color: #3D5A80;
+    padding: 25px 0px;
+}
+
+.main_navbar ul{
+    gap: 60%;
+    padding: 0px;
+    margin: 0px;
+    width: auto;
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.main_navbar ul  *{
+    color : #E0FBFC;
+}
+
+

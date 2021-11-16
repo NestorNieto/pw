@@ -18,3 +18,8 @@ export const SignIn = async (username, password) => {
     const data = {token: result.token, role: result.role};
     return data;
 };
+
+export const logOut = () => {
+    localStorage.removeItem('role');
+    localStorage.removeItem('token');
+};
