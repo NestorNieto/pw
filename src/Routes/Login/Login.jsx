@@ -1,9 +1,8 @@
 import { useState } from "react";
-import { Navigate, useLocation, useNavigate} from "react-router-dom";
+import { Navigate, useNavigate} from "react-router-dom";
 import { login } from "../../Services/Authorization.service";
 
 const Login = () => {
-    const location = useLocation();
     const role = localStorage.getItem('role');
     const navigate = useNavigate();
     const [username, setUsername] = useState('');

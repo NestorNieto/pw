@@ -2,7 +2,7 @@
     margin: 0;
     width: 100%;
     background-color: #3D5A80;
-    padding: 25px 0px;
+    padding: 15px 0px;
 }
 
 .main_navbar ul{
@@ -16,6 +16,7 @@
 }
 
 .main_navbar ul  *{
+    margin: auto 0;
     color : #E0FBFC;
 }
 
