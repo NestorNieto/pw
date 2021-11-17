@@ -25,7 +25,7 @@ export const logOut = () => {
     localStorage.removeItem('username');
 };
 
-export const getOwned = async ({token, limit, page}) => {
+export const getOwned = async (token, limit, page) => {
     const URL = `${API_BASE_URL}/post/owned?limit=${limit}&page=${page}`;
     const request = {
         "method" : "GET",
@@ -42,3 +42,25 @@ export const getOwned = async ({token, limit, page}) => {
 
     return {data, pages};
 };
+
+export const fetchAllPost = async (token, limit, page) => {
+    const URL = `${API_BASE_URL}/post/all?limit=${limit}&page=${page}`;
+    const request = {
+        "method" : "GET",
+        "headers" : {
+            "Authorization" : `Bearer ${token}`
+        }
+    };
+
+    const response = await fetch(URL, request);
+    const {data, pages} = await response.json();
+    return {data, pages};
+};
+
+export const getUserData = () =>{
+    const token =localStorage.getItem('token');
+    const role =  localStorage.getItem('role');
+    const username = localStorage.getItem('username')
+    
+    return {token, role, username};
+}
