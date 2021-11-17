@@ -1,14 +1,20 @@
+import { useState } from 'react';
 import {AiFillLeftSquare as Left , AiFillRightSquare as Right, AiFillPlusSquare as Add} from 'react-icons/ai'
 import { useNavigate } from 'react-router';
 import Post from '../../Components/Post/Post';
 import styles from './AdminHome.module.css';
+import { getOwnedPost } from '../../Services/Post.services';
+
 const AdminHome = () => {
-    const navigate = useNavigate();
     const ToAdd = () => {
         navigate("/create", {replace: true})
     };
+
     const size = 32;
+    const navigate = useNavigate();
+    const token = localStorage.getItem('token');
     const username = localStorage.getItem('username');
+    const [page, setPage] = useState(0);
     const posts = {
         data: [
             {
@@ -32,13 +38,18 @@ const AdminHome = () => {
             }
         ]
     }
+
+    const p = getOwnedPost(token, page);
+    console.log(p);
+    
+
     return (
         <section className={styles.post_wrapper}>
             <div className={styles.posts_header}>
-                <h1>Post de {username}</h1>
+                <h1>Post de {JSON.stringify(p)} </h1>
                 <div className={styles.buttons}>
                 <button><Left size = {size}/></button>
-                <button disabled={true}><Right size = {size} /></button>
+                <button><Right size = {size} /></button>
                 <button onClick={ToAdd}><Add size = {size} /></button>
                 </div>
             </div>

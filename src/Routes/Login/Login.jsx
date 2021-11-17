@@ -5,6 +5,7 @@ import { login } from "../../Services/Authorization.service";
 const Login = () => {
     const role = localStorage.getItem('role');
     const navigate = useNavigate();
+
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
@@ -13,7 +14,6 @@ const Login = () => {
         const success = await login(username, password);
         if(success === true){
             const updatedRole = localStorage.getItem('role');
-            console.log(updatedRole);
             if(updatedRole === 'admin'){
                 navigate("/admin", {replace: true});
             }
@@ -22,7 +22,7 @@ const Login = () => {
             }
         }
         else{
-            alert("tas mal bro");
+            alert("tas mal bro");// Notificacion
         }
     };
     const handlePasswordChange = (event) => {

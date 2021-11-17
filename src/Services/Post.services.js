@@ -1,10 +1,15 @@
 import { getOwned } from "./Helper";
 
-export const getOwnedPost = (token, page ) => {
+export const getOwnedPost = async (token, page ) => {
     try {
         const limit = 5;
-        const serverResponse = getOwned(token, limit, page);
-        return serverResponse;    
+        const params = {
+            token : token,
+            limit : limit,
+            page: page
+        };
+        const serverResponse = await getOwned(params);
+        return serverResponse;// {data, pages}    
     } catch (error) {
         console.error(error);
         return {};

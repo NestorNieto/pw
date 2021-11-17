@@ -33,12 +33,11 @@ export const getOwned = async ({token, limit, page}) => {
             "Authorization" : `Bearer ${token}`
         }
     };
-
     const response = await fetch(URL, request);
     const {data, pages, error} = await response.json();
 
     if(error !== undefined){
-        throw data.error;
+        throw error;
     }
 
     return {data, pages};

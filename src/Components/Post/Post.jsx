@@ -5,7 +5,7 @@ const Post = ({ data }) => {
 
     return (
         <div className={styles.post}>
-            <h2>{data.title} <span>{data.user?.username}</span></h2>
+            <h2>{data.title}<span>{data.user?.username}</span></h2>
             <p>{data.description}</p>
             {data.image !== undefined &&
                 <div className={styles.img_wrapper}>

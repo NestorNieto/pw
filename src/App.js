@@ -12,15 +12,18 @@ function App() {
   return (
     <Routes>
         <Route path="/" element= {<Login/>} />
+
         <Route element = {<ProtectedRoute role = 'admin'/>}>
           <Route path="/create" element = {<Layout> <CreatePost/> </Layout>} />
           <Route path="/edit/:postId" element = {<Layout> <CreatePost/> </Layout>} />
           <Route path="/admin" element = {<Layout> <AdminHome/> </Layout>} />
         </Route>
+        
         <Route element = {<ProtectedRoute role = 'user'/> }>
           <Route path="/user" element = {<Layout> <UserHome/> </Layout> } />
           <Route path="/post/:postId" element = {<Layout> <GetPost/> </Layout>} />
         </Route>
+        
         <Route path="*" element = {<Error error = "La pagina no existe."/>} />
       </Routes>
   );
