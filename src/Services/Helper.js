@@ -124,3 +124,26 @@ export const createComment = async (token, postId, comment) => {
         throw new Error("Post Not Found.");
     }
 };
+
+
+export const createPost = async(token, title, description, image) => {
+    const URL = `${API_BASE_URL}/post/create`;
+    const request = {
+        "method" : "POST",
+        "headers": {
+            "Content-Type": "application/x-www-form-urlencoded",
+            "Authorization" : `Bearer ${token}`
+        },
+        "body" : `title=${title}&description=${description}&image=${image}`
+    }
+
+    const response = await fetch(URL, request);
+    const {message} = await response.json();
+
+    if(response.ok){
+        return message;
+    }
+    else{
+        throw new Error("An error has occurred");
+    }
+};

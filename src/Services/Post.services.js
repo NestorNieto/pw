@@ -3,7 +3,8 @@ import {
     fetchAllPost,
     fetchOnePost,
     getOwned,
-    toggleLike
+    toggleLike,
+    createPost
 } from "./Helper";
 
 export const getOwnedPost = async (token, page) => {
@@ -57,3 +58,14 @@ export const postComment = async (token, postId, message) => {
         return {};
     }
 };
+
+export const Create = async (token, title, description, image) =>{
+    try {
+        const serverResponse = await createPost(token, title, description, image);
+        console.log(serverResponse);
+        return serverResponse;
+    } catch (error) {
+        console.error(error);
+        return {};
+    }
+}
