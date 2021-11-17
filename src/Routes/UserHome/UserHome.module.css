@@ -5,3 +5,38 @@
     align-items: center;
     justify-content: center;
 }
+
+.posts_header{
+    display: flex;
+    justify-content: space-between;
+    width: 500px;
+    border-bottom: 4px solid #3D5A80;
+    margin-top: 3vh;
+    padding: 0;
+}
+
+.posts_header *{
+    padding: 0;
+    margin: 5px;
+}
+
+.buttons button{
+    display: flexbox;
+    justify-content: center;
+    align-items: center;
+    border: 0;
+    padding: 0;
+    background-color:inherit;
+    color: #3D5A80;
+    cursor: pointer;
+}
+.buttons button svg{
+    padding: 0;
+    margin: 0;
+}
+
+.buttons button:hover{
+    border: 0;
+    color: #EE6C4D;
+    cursor: pointer;
+}

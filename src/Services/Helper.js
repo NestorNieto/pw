@@ -57,6 +57,25 @@ export const fetchAllPost = async (token, limit, page) => {
     return {data, pages};
 };
 
+export const fetchOnePost = async(token, postId) => {
+    const URL = `${API_BASE_URL}/post/one/${postId}}`;
+    const request = {
+        "method" : "GET",
+        "headers" :{
+            "Authorization" : `Bearer ${token}`
+        }
+    };
+
+    const response = await fetch(URL, request);
+    const post = await response.json();
+    if(response.ok){
+        return post;
+    }
+    else{
+        throw new Error("Post Not Found");
+    }
+};
+
 export const getUserData = () =>{
     const token =localStorage.getItem('token');
     const role =  localStorage.getItem('role');
@@ -64,3 +83,22 @@ export const getUserData = () =>{
     
     return {token, role, username};
 }
+
+export const toggleLike = async (token, postId) => {
+    const URL = `${API_BASE_URL}/post/like/${postId}`;
+    const request = {
+        "method" : "PATCH",
+        "headers" : {
+            "Authorization" : `Bearer ${token}` 
+        }
+    };
+
+    const response = await fetch(URL, request);
+    const {message} = await response.json();
+    
+    if(response.ok){
+        return {message};
+    }else{
+        throw new Error("Post Not Found");
+    }
+};

@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router';
 import Post from '../../Components/Post/Post';
 import styles from './AdminHome.module.css';
 import { getOwnedPost } from '../../Services/Post.services';
+import { getUserData } from '../../Services/Helper';
 
 const AdminHome = () => {
     const ToAdd = () => {
@@ -12,8 +13,7 @@ const AdminHome = () => {
 
     const size = 32;
     const navigate = useNavigate();
-    const token = localStorage.getItem('token');
-    const username = localStorage.getItem('username');
+    const {token, username} = getUserData();
     const [page, setPage] = useState(0);
     const posts = {
         data: [
@@ -46,7 +46,7 @@ const AdminHome = () => {
     return (
         <section className={styles.post_wrapper}>
             <div className={styles.posts_header}>
-                <h1>Post de {JSON.stringify(p)} </h1>
+                <h1>Post de {username} </h1>
                 <div className={styles.buttons}>
                 <button><Left size = {size}/></button>
                 <button><Right size = {size} /></button>
