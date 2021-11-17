@@ -102,3 +102,25 @@ export const toggleLike = async (token, postId) => {
         throw new Error("Post Not Found");
     }
 };
+
+export const createComment = async (token, postId, comment) => {
+    const URL = `${API_BASE_URL}/post/comment/${postId}`;
+    const request = {
+        "method" : "PATCH",
+        "headers" : {
+            "Content-Type": "application/x-www-form-urlencoded",
+            "Authorization" : `Bearer ${token}`
+        },
+        "body" : `description=${comment}`
+    }
+
+    const response = await fetch(URL, request);
+    const {message} = await response.json();
+
+    if(response.ok){
+        return message;
+    }
+    else{
+        throw new Error("Post Not Found.");
+    }
+};

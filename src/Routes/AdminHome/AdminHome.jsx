@@ -53,11 +53,7 @@ const AdminHome = () => {
                 <button onClick={ToAdd}><Add size = {size} /></button>
                 </div>
             </div>
-            {posts.data.map(post => {
-                return (
-                    <Post data={post} />
-                )
-            })}
+            
         </section>
     );
 };

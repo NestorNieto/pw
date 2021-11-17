@@ -5,6 +5,8 @@ import { getOnePost } from '../../Services/Post.services';
 import { getUserData } from '../../Services/Helper';
 import styles from './GetPost.module.css';
 import Comments from '../../Components/Comments/Comments';
+import CommentBar from '../../Components/CommentBar/CommentBar'
+
 const GetPost = () => {
     const {postId} = useParams();
     const {token} = getUserData();
@@ -12,6 +14,7 @@ const GetPost = () => {
     const postIsEmpty = post 
     && Object.keys(post).length === 0
     && Object.getPrototypeOf(post) === Object.prototype;
+
 
     useEffect(() =>{
         const getPost = async () => {
@@ -25,6 +28,7 @@ const GetPost = () => {
         <section className={styles.post_wrapper}>
         {!postIsEmpty && <Post data = {post} />}
         {!postIsEmpty && <Comments data = {post.comments}/>}
+        <CommentBar id = {postId}/>
         </section>
     );
 };

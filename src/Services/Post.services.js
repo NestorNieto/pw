@@ -1,4 +1,5 @@
 import {
+    createComment,
     fetchAllPost,
     fetchOnePost,
     getOwned,
@@ -46,3 +47,13 @@ export const getOnePost = async (token, postId) => {
         return {};
     }
 }
+
+export const postComment = async (token, postId, message) => {
+    try {
+        const serverResponse = await createComment(token, postId, message);
+        return serverResponse;
+    } catch (error) {
+        console.error(error);
+        return {};
+    }
+};
