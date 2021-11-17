@@ -3,7 +3,7 @@ import { AiFillEyeInvisible, AiFillEye, AiFillEdit, AiFillLike, AiOutlineLike } 
 import { getUserData } from '../../Services/Helper';
 import { FaComment} from 'react-icons/fa'
 import { useNavigate } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { likePost } from '../../Services/Post.services';
 
 const Post = ({ data }) => {
@@ -21,7 +21,7 @@ const Post = ({ data }) => {
     const handleToggle = () => { setVisibility(!visibility) }
     const handleLike = () => {likePost(token, data._id); setLiked(!liked)};
     const navigateToPost = () => { navigate(`/post/${data._id}`, {replace: true})};
-    const likesCount = (initialLiked == liked)? 0 : (liked? 1: -1);
+    const likesCount = (initialLiked === liked)? 0 : (liked? 1: -1);
     const ActionButtons = () => {
         if (role === 'admin') {
             return (

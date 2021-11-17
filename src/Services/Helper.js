@@ -58,7 +58,7 @@ export const fetchAllPost = async (token, limit, page) => {
 };
 
 export const fetchOnePost = async(token, postId) => {
-    const URL = `${API_BASE_URL}/post/one/${postId}}`;
+    const URL = `${API_BASE_URL}/post/one/${postId}`;
     const request = {
         "method" : "GET",
         "headers" :{

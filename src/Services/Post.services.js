@@ -1,5 +1,6 @@
 import {
     fetchAllPost,
+    fetchOnePost,
     getOwned,
     toggleLike
 } from "./Helper";
@@ -31,7 +32,17 @@ export const likePost = async (token, postId) =>{
         const serverResponse = await toggleLike(token, postId);
         return serverResponse;
     } catch (error) {
-        console.error();
+        console.error(error);
         return{};
+    }
+}
+
+export const getOnePost = async (token, postId) => {
+    try {
+        const serverResponse = await fetchOnePost(token, postId);
+        return serverResponse;
+    } catch (error) {
+        console.error(error);
+        return {};
     }
 }

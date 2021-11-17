@@ -1,0 +1,5 @@
+.post_wrapper{
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+}
