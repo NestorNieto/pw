@@ -14,8 +14,10 @@ code {
 }
 
 #root{
+  display: flex;
+  flex-direction: column;
   margin: 0;
   padding: 0;
   background-color: #E0FBFC;
-  height: 100vh;
+  min-height: 100vh;
 }

@@ -1,0 +1,28 @@
+.post{
+    border-radius: 10px;
+    min-height: 100px;
+    min-width: 500px;
+    margin: 20px 0px;
+    color: #E0FBFC;
+    background-color: #3D5A80;
+}
+.post h2{
+    margin: 10px;
+}
+
+.post p{
+    margin: 10px;
+}
+
+.img_wrapper{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #98C1D9;
+}
+
+.img_wrapper img{
+    height: 100%;
+    max-width: 500px;
+}

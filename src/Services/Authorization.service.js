@@ -3,6 +3,7 @@ export const login = async (username, password) => {
     try {
         const {token, role} = await SignIn(username, password);
         localStorage.setItem('token', token);
+        localStorage.setItem('username', username);
         localStorage.setItem('role', role);
         return true;
     } catch (error) {

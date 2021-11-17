@@ -14,6 +14,7 @@ function App() {
         <Route path="/" element= {<Login/>} />
         <Route element = {<ProtectedRoute role = 'admin'/>}>
           <Route path="/create" element = {<Layout> <CreatePost/> </Layout>} />
+          <Route path="/edit/:postId" element = {<Layout> <CreatePost/> </Layout>} />
           <Route path="/admin" element = {<Layout> <AdminHome/> </Layout>} />
         </Route>
         <Route element = {<ProtectedRoute role = 'user'/> }>

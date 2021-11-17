@@ -5,7 +5,7 @@ const Footer = () => {
         <footer className={styles.footer}>
             <p>Grupo #47</p>
             <BsGithub size={32}/>
-            <p>2021 &copy;</p>
+            <p>&copy;2021</p>
         </footer>
     );
 };

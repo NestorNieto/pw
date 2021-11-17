@@ -22,4 +22,24 @@ export const SignIn = async (username, password) => {
 export const logOut = () => {
     localStorage.removeItem('role');
     localStorage.removeItem('token');
+    localStorage.removeItem('username');
+};
+
+export const getOwned = async ({token, limit, page}) => {
+    const URL = `${API_BASE_URL}/post/owned?limit=${limit}&page=${page}`;
+    const request = {
+        "method" : "GET",
+        "headers" : {
+            "Authorization" : `Bearer ${token}`
+        }
+    };
+
+    const response = await fetch(URL, request);
+    const {data, pages, error} = await response.json();
+
+    if(error !== undefined){
+        throw data.error;
+    }
+
+    return {data, pages};
 };
