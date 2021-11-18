@@ -4,7 +4,9 @@ import {
     fetchOnePost,
     getOwned,
     toggleLike,
-    createPost
+    createPost,
+    toggleActive,
+    updatePost
 } from "./Helper";
 
 export const getOwnedPost = async (token, page) => {
@@ -62,10 +64,29 @@ export const postComment = async (token, postId, message) => {
 export const Create = async (token, title, description, image) =>{
     try {
         const serverResponse = await createPost(token, title, description, image);
-        console.log(serverResponse);
         return serverResponse;
     } catch (error) {
         console.error(error);
-        return {};
+        return error;
+    }
+}
+
+export const toggleActivePost = async (token, postId) => {
+    try {
+        const serverResponse= await toggleActive(token, postId);
+        return serverResponse;
+    } catch (error) {
+        console.error(error);
+        return error;
+    }
+};
+
+export const updateAdminPost = async (token,title,description,image,postId) => {
+    try {
+        const serverResponse = await updatePost(token,title,description,image,postId);
+        return serverResponse;
+    } catch (error) {
+        console.error(error);
+        return error;
     }
 }
