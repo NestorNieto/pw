@@ -1,7 +1,7 @@
 import {HiHome} from 'react-icons/hi'
 import {RiLogoutBoxRFill} from 'react-icons/ri'
 import { Link } from "react-router-dom";
-import { logOut } from "../../Services/Helper";
+import { logOut } from '../../Services/Authorization.service';
 
 import styles from './Navbar.module.css';
 const Navbar = (props) => {

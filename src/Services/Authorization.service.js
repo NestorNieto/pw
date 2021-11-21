@@ -13,3 +13,9 @@ export const login = async (username, password) => {
         return false;
     }
 };
+
+export const logOut = () => {
+    localStorage.removeItem('role');
+    localStorage.removeItem('token');
+    localStorage.removeItem('username');
+};

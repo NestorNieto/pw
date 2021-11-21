@@ -22,12 +22,6 @@ export const SignIn = async (username, password) => {
     return data;
 };
 
-export const logOut = () => {
-    localStorage.removeItem('role');
-    localStorage.removeItem('token');
-    localStorage.removeItem('username');
-};
-
 export const getOwned = async (token, limit, page) => {
     const URL = `${API_BASE_URL}/post/owned?limit=${limit}&page=${page}`;
     const request = {
