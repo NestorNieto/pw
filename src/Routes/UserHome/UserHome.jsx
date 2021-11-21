@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { getUserData } from "../../Services/Helper";
-import { getAllPosts } from "../../Services/Post.services";
+import { getAllFavoritesPost, getAllPosts } from "../../Services/Post.services";
 import {BsFillBookmarkStarFill as Bookmark} from 'react-icons/bs';
 import {AiFillLeftSquare as Left , AiFillRightSquare as Right} from 'react-icons/ai'
 import styles from './UserHome.module.css';
@@ -18,10 +18,16 @@ const UserHome = () => {
     const favoritesHandler = () => {};
     useEffect(() => {
         const getPost = async () =>{
-            const response = await getAllPosts(token,page);
-            console.log(response.data);
-            setPosts(response.data);
-            setLastPage(response.pages);
+            const favorites = await getAllFavoritesPost(token);
+            const {data, pages}= await getAllPosts(token,page);
+            const modifiedPost = data.map((post) => {
+                post.favorite = favorites.indexOf(post._id) !== -1;
+                return post; 
+            });
+            
+            console.log(data);
+            setPosts(modifiedPost);
+            setLastPage(pages);
         };
         
         getPost();

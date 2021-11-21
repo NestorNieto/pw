@@ -8,7 +8,7 @@ import { likePost, toggleFavorite } from '../../Services/Post.services';
 import { getUserData } from '../../Services/Helper';
 import Notification from '../../Components/Notification/Notification'
 
-const UserPost = ({ data, isFavorite }) => {
+const UserPost = ({ data }) => {
     const { token, username } = getUserData();
     const size = 24;
     const navigate = useNavigate();
@@ -16,7 +16,7 @@ const UserPost = ({ data, isFavorite }) => {
     const likes = data.likes?.length;
     const comments = data.comments.length;
     const [liked, setLiked] = useState(initialLiked);
-    const [bookmarked, setBookmark] = useState(isFavorite);
+    const [bookmarked, setBookmark] = useState(data.favorite);
     const [message, setMessage] = useState('');
     const likesCount = (initialLiked === liked) ? 0 : (liked ? 1 : -1);
     const likeIcon = liked ? <AiFillLike size={size} /> : <AiOutlineLike size={size} />;

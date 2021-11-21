@@ -32,13 +32,13 @@ export const getAllPosts = async (token, page) => {
     }
 }
 
-export const likePost = async (token, postId) =>{
+export const likePost = async (token, postId) => {
     try {
         const serverResponse = await toggleLike(token, postId);
         return serverResponse;
     } catch (error) {
         console.error(error);
-        return{};
+        return {};
     }
 }
 
@@ -62,7 +62,7 @@ export const postComment = async (token, postId, message) => {
     }
 };
 
-export const Create = async (token, title, description, image) =>{
+export const Create = async (token, title, description, image) => {
     try {
         const serverResponse = await createPost(token, title, description, image);
         return serverResponse;
@@ -74,7 +74,7 @@ export const Create = async (token, title, description, image) =>{
 
 export const toggleActivePost = async (token, postId) => {
     try {
-        const serverResponse= await toggleActive(token, postId);
+        const serverResponse = await toggleActive(token, postId);
         return serverResponse;
     } catch (error) {
         console.error(error);
@@ -82,9 +82,9 @@ export const toggleActivePost = async (token, postId) => {
     }
 };
 
-export const updateAdminPost = async (token,title,description,image,postId) => {
+export const updateAdminPost = async (token, title, description, image, postId) => {
     try {
-        const serverResponse = await updatePost(token,title,description,image,postId);
+        const serverResponse = await updatePost(token, title, description, image, postId);
         return serverResponse;
     } catch (error) {
         console.error(error);
@@ -96,20 +96,43 @@ export const toggleFavorite = async (token, postId) => {
     try {
         const URL = `${API_BASE_URL}/post/fav/${postId}`;
         const request = {
-            "method" : "PATCH",
-            "headers" : {
-                "Authorization" : `Bearer ${token}`
+            "method": "PATCH",
+            "headers": {
+                "Authorization": `Bearer ${token}`
             }
         }
         const response = await fetch(URL, request);
-        if(response.ok){
-            return {message: "Favorito actualizado.", error:false};
-        }
-        else{
+        if (response.ok) {
+            return {
+                message: "Favorito actualizado.",
+                error: false
+            };
+        } else {
             throw Error("Error al cambiar favorito");
         }
     } catch (error) {
         console.error(error);
-        return {message: error, error:true};
+        return {
+            message: error,
+            error: true
+        };
+    }
+}
+
+export const getAllFavoritesPost = async (token) => {
+    try {
+        const URL = `${API_BASE_URL}/post/fav`;
+        const request = {
+            "method": "GET",
+            "headers": {
+                "Authorization": `Bearer ${token}`
+            }
+        }
+        const response = await fetch(URL, request);
+        const {favorites} = await response.json();
+        return favorites;
+    } catch (error) {
+        console.error(error);
+        return [];
     }
 }
