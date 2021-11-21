@@ -7,7 +7,11 @@ import styles from './Bookmarks.module.css';
 const Bookmarks = () => {
     const { token } = getUserData();
     const [posts, setPosts] = useState(undefined);
+    const [reRender, setReRender] = useState(false);
 
+    const forceRender = () => {
+        setReRender(!reRender);
+    }
     useEffect(() => {
         const getFavs = async () => {
             const favorites = await getAllFavoritesPost(token);
@@ -15,17 +19,25 @@ const Bookmarks = () => {
             favorites.forEach((postId) => {
                 promises.push(getOnePost(token, postId));
             });
-            setPosts(await Promise.all(promises));
+            const favPost = await Promise.all(promises);
+            const modifiedPosts = await favPost.map(post => {post.favorite=true; return post;});
+            console.table(modifiedPosts);
+            setPosts(modifiedPosts);
         };
 
         getFavs();
-    }, [token,posts]);
+    }, [token, reRender]);
 
-    return (
+    if (posts === undefined) {
+        return <div className={styles.start}> <p>Cargando favoritos...</p></div>
+    }
+    else {
+        return(
         <div className={styles.post_wrapper}>
-            {posts !== undefined && posts.map((post) => (<UserPost data={post} key={post._id} />))}
+        {posts.map((post) => (<UserPost data={post} key={post._id} forceRender = {forceRender} />))}
         </div>
         );
+    }
 };
 
 export default Bookmarks;

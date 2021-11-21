@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { AiFillLike, AiOutlineLike } from 'react-icons/ai';
 import { FaComment } from 'react-icons/fa'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import styles from './Post.module.css';
 import {BsFillBookmarkPlusFill, BsFillBookmarkCheckFill} from "react-icons/bs"
 import { likePost, toggleFavorite } from '../../Services/Post.services';
@@ -9,6 +9,7 @@ import { getUserData } from '../../Services/Helper';
 import Notification from '../../Components/Notification/Notification'
 
 const UserPost = ({ data }) => {
+    const location = useLocation();
     const { token, username } = getUserData();
     const size = 24;
     const navigate = useNavigate();
@@ -16,16 +17,18 @@ const UserPost = ({ data }) => {
     const likes = data.likes?.length;
     const comments = data.comments.length;
     const [liked, setLiked] = useState(initialLiked);
-    const [bookmarked, setBookmark] = useState(data.favorite);
+    const [bookmarked, setBookmark] = useState(location?.state?.favorite || data.favorite);
     const [message, setMessage] = useState('');
     const likesCount = (initialLiked === liked) ? 0 : (liked ? 1 : -1);
     const likeIcon = liked ? <AiFillLike size={size} /> : <AiOutlineLike size={size} />;
     const BookMarkIcon = bookmarked ? <BsFillBookmarkCheckFill className={styles.filled} size={size}/> : <BsFillBookmarkPlusFill size={size}/>; 
     const handleLike = () => { likePost(token, data._id); setLiked(!liked) };
     const handleBookmark = async () => {
+            
         const {message, error} = await toggleFavorite(token, data._id);
         if(!error){
             setBookmark(!bookmarked);
+            data.favorite = bookmarked;
         }
         else{
             setMessage('');
@@ -33,7 +36,7 @@ const UserPost = ({ data }) => {
         }
         
     };
-    const navigateToPost = () => { navigate(`/post/${data._id}`, { replace: true }) };
+    const navigateToPost = () => { navigate(`/post/${data._id}`, { replace: true, state: {favorite: bookmarked} }) };
     return (
         <div className={styles.post}>
             <h2>{data.title}<span> {data.user?.username} </span></h2>
