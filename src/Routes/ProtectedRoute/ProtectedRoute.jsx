@@ -1,8 +1,21 @@
-import { Outlet , Navigate, useLocation } from "react-router-dom";
+import { useEffect } from "react";
+import { Outlet , Navigate, useLocation, useNavigate } from "react-router-dom";
+import { isUser } from "../../Services/Authorization.service";
 
 const ProtectedRoute = ({role}) => {
     const location = useLocation();
+    const navigate = useNavigate();
     const storedRole = localStorage.getItem('role');
+
+    useEffect(() =>{
+        const authorized = async () => {
+            const { identified, navObj } = await isUser();
+            if (!identified) {
+                navigate(navObj.route, navObj.options);
+            }
+        };
+        authorized();
+    })
 
     if(storedRole === role){
         return <Outlet/>
