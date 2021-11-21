@@ -1,10 +1,10 @@
 import { useState } from "react";
-import { Navigate, useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { login } from "../../Services/Authorization.service";
+import { getUserData } from "../../Services/Helper";
 import styles from './Login.module.css'
 
 const Login = () => {
-    let role = localStorage.getItem('role');
     const navigate = useNavigate();
 
     const [username, setUsername] = useState('');
@@ -14,7 +14,7 @@ const Login = () => {
         event.preventDefault();
         const success = await login(username, password);
         if(success === true){
-            role = localStorage.getItem('role');
+            const { role } = getUserData();
             if(role === 'admin'){
                 navigate("/admin", {replace: true});
             }
@@ -33,7 +33,7 @@ const Login = () => {
         setUsername(event.target.value);
     };
 
-    const LoginForm = (
+    return (
         <form onSubmit={handleSubmit} method="post" className = {styles.form}>
             <label>
                 Usuario
@@ -48,14 +48,6 @@ const Login = () => {
             <input type="submit" value="Ingresar"  className={styles.button}/>
         </form>
     );
-
-    if (role === 'admin') {
-        return <Navigate to="/admin"/>
-    }
-    else if(role === 'user'){
-        return <Navigate to="/user"/>
-    }
-    else return LoginForm;
 };
 
 export default Login;
