@@ -3,8 +3,8 @@ import { getUserData } from "../../Services/Helper";
 import { getAllPosts } from "../../Services/Post.services";
 import {BsFillBookmarkStarFill as Bookmark} from 'react-icons/bs';
 import {AiFillLeftSquare as Left , AiFillRightSquare as Right} from 'react-icons/ai'
-import Post from "../../Components/Post/Post";
 import styles from './UserHome.module.css';
+import UserPost from "../../Components/Post/UserPost";
 const UserHome = () => {
     const size = 24;
     const [lastPage, setLastPage] = useState(0);
@@ -37,7 +37,7 @@ const UserHome = () => {
             </div>
         {
             posts.map( post => {
-                return (<Post data = {post} key={post._id}/>)
+                return (<UserPost data = {post} key={post._id}/>)
             })
         }
         </section>

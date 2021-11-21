@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 import {AiFillLeftSquare as Left , AiFillRightSquare as Right, AiFillPlusSquare as Add} from 'react-icons/ai'
 import { useNavigate } from 'react-router';
-import Post from '../../Components/Post/Post';
 import styles from './AdminHome.module.css';
 import { getOwnedPost } from '../../Services/Post.services';
 import { getUserData } from '../../Services/Helper';
+import AdminPost from '../../Components/Post/AdminPost';
 
 const AdminHome = () => {
     const ToAdd = () => {
@@ -39,7 +39,7 @@ const AdminHome = () => {
             </div>
             {posts.map( post => {
                 return (
-                    <Post data={post} key={post._id}/>
+                    <AdminPost data={post} key={post._id}/>
                 );
             })}
         </section>
