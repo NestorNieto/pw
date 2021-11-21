@@ -42,7 +42,8 @@
     border-radius: 0px 0px 0px 10px ;
 }
 
-#second{
+
+#last{
     border-radius: 0px 0px 10px 0px ;
 }
 .action button{
@@ -66,4 +67,8 @@
 
 .action button > svg {
     margin-right: 10px;
+}
+
+.filled{
+    color: var(--focus);
 }

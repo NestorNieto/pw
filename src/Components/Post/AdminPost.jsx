@@ -24,7 +24,7 @@ const AdminPost = ({ data }) => {
                 </div>}
             <div className={styles.action}>
                 <button id={styles.first} onClick={handleToggle}>{eyeIcon} {visibility ? "Visible" : "Invisible"} </button>
-                <button id={styles.second} onClick={handleEdit}><AiFillEdit size={size} /> Edit Post </button>
+                <button id={styles.last} onClick={handleEdit}><AiFillEdit size={size} /> Edit Post </button>
             </div>
         </div>
     );
