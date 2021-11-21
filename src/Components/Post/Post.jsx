@@ -27,16 +27,16 @@ const Post = ({ data }) => {
         if (role === 'admin') {
             return (
                 <>
-                    <button onClick={handleToggle}>{eyeIcon} {visibility ? "Visible" : "Invisible"} </button>
-                    <button onClick={handleEdit}><AiFillEdit size={size} /> Edit Post </button>
+                    <button id={styles.first} onClick={handleToggle}>{eyeIcon} {visibility ? "Visible" : "Invisible"} </button>
+                    <button id={styles.second} onClick={handleEdit}><AiFillEdit size={size} /> Edit Post </button>
                 </>
             );
         }
         else if (role === 'user') {
             return (
                 <>
-                    <button onClick={handleLike}>{likeIcon} {likes + likesCount} </button>
-                    <button onClick = {navigateToPost}><FaComment size = {size} /> {comments} </button>
+                    <button id={styles.first} onClick={handleLike}>{likeIcon} {likes + likesCount} </button>
+                    <button id={styles.second} onClick = {navigateToPost}><FaComment size = {size} /> {comments} </button>
                 </>
             );
         }

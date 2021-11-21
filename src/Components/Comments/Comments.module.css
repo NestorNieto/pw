@@ -1,18 +1,11 @@
-.comments{
-    display: flex;
-    flex-direction: column;
-    background-color: red;
-    max-width: 500px;
-}
-
 .comment{
-    color: #98C1D9;
+    color: var(--secondary);
     padding: 10px 0;
     border-radius: 10px;
     display: flex;
     max-width: 500px;
     flex-direction: column;
-    background-color: #3D5A80;
+    background-color: var(--primary);
     margin: 10px 0;
 }
 
@@ -20,5 +13,5 @@
     margin: 0 20px;
 }
 .comment h3{
-    color: #EE6C4D;
+    color: var(--focus);
 }
