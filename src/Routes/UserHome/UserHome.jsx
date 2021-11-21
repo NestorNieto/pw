@@ -5,8 +5,11 @@ import {BsFillBookmarkStarFill as Bookmark} from 'react-icons/bs';
 import {AiFillLeftSquare as Left , AiFillRightSquare as Right} from 'react-icons/ai'
 import styles from './UserHome.module.css';
 import UserPost from "../../Components/Post/UserPost";
+import { useNavigate } from "react-router-dom";
+
 const UserHome = () => {
     const size = 24;
+    const navigate = useNavigate();
     const [lastPage, setLastPage] = useState(0);
     const {username, token} = getUserData();
     const [page, setPage] = useState(0);
@@ -15,7 +18,9 @@ const UserHome = () => {
     const isFirstPage =  page === 0;
     const prevPage = () => setPage(page - 1);
     const nextPage = () => setPage(page + 1);
-    const favoritesHandler = () => {};
+    const ToBookmarks = () => {
+        navigate("/bookmarks", {replace: true})
+    };
     useEffect(() => {
         const getPost = async () =>{
             const favorites = await getAllFavoritesPost(token);
@@ -39,7 +44,7 @@ const UserHome = () => {
                 <div className={styles.buttons}>
                 {!isFirstPage && <button onClick={prevPage}><Left size = {size}/></button>}
                 {!isLastPage && <button onClick={nextPage}><Right size = {size} /></button>}
-                <button onClick={favoritesHandler}><Bookmark size = {size} /></button>
+                <button onClick={ToBookmarks}><Bookmark size = {size} /></button>
                 </div>
             </div>
         {

@@ -7,6 +7,7 @@ import Layout from './Components/Layout/Layout';
 import ProtectedRoute from './Routes/ProtectedRoute/ProtectedRoute';
 import { Routes, Route } from 'react-router-dom';
 import Home from './Routes/Home/Home';
+import Bookmarks from './Routes/Bookmarks/Bookmarks';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         
         <Route element = {<ProtectedRoute role = 'user'/> }>
           <Route path="/user" element = {<Layout> <UserHome/> </Layout> } />
+          <Route path="/bookmarks" element = {<Layout> <Bookmarks/> </Layout> } />
           <Route path="/post/:postId" element = {<Layout> <GetPost/> </Layout>} />
         </Route>
         
