@@ -14,6 +14,9 @@ code {
 }
 
 #root{
+  --primary : #3D5A80;
+  --secondary : #98C1D9;
+  --focus : #EE6C4D;
   display: flex;
   flex-direction: column;
   margin: 0;

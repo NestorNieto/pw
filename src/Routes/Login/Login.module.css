@@ -8,9 +8,9 @@
     align-self: center;
     flex-wrap: wrap;
     width: 600px;
-    background-color: #3D5A80;
+    background-color: var(--primary);
     font-size: x-large;
-    color: #98C1D9;
+    color: var(--secondary);
     border-radius: 10px;
 }
 .form label{
@@ -23,7 +23,7 @@
     margin: 10px;
 }
 .form input{
-    outline: #98C1D9 1px;
+    outline: var(--secondary) 1px;
     font-size: large;
     margin-top: 10px;
     width: 100%;
@@ -38,7 +38,13 @@
     padding: 10px 0;
     width: 30% !important;
     border-radius: 10px;
-    border: 1px solid #98C1D9 ;
-    background-color: #98C1D9;
+    border: 1px solid var(--primary) ;
+    background-color: var(--secondary);
     color: #3D5A80;
+}
+
+.button:hover{
+    outline: none;
+    background-color: var(--focus);
+    cursor: pointer;
 }
