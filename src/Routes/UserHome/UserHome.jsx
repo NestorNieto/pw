@@ -19,6 +19,7 @@ const UserHome = () => {
     useEffect(() => {
         const getPost = async () =>{
             const response = await getAllPosts(token,page);
+            console.log(response.data);
             setPosts(response.data);
             setLastPage(response.pages);
         };

@@ -6,7 +6,8 @@ import {
     toggleLike,
     createPost,
     toggleActive,
-    updatePost
+    updatePost,
+    API_BASE_URL
 } from "./Helper";
 
 export const getOwnedPost = async (token, page) => {
@@ -88,5 +89,27 @@ export const updateAdminPost = async (token,title,description,image,postId) => {
     } catch (error) {
         console.error(error);
         return error;
+    }
+}
+
+export const toggleFavorite = async (token, postId) => {
+    try {
+        const URL = `${API_BASE_URL}/post/fav/${postId}`;
+        const request = {
+            "method" : "PATCH",
+            "headers" : {
+                "Authorization" : `Bearer ${token}`
+            }
+        }
+        const response = await fetch(URL, request);
+        if(response.ok){
+            return {message: "Favorito actualizado.", error:false};
+        }
+        else{
+            throw Error("Error al cambiar favorito");
+        }
+    } catch (error) {
+        console.error(error);
+        return {message: error, error:true};
     }
 }
