@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { Navigate, useNavigate} from "react-router-dom";
 import { login } from "../../Services/Authorization.service";
+import styles from './Login.module.css'
 
 const Login = () => {
-    const role = localStorage.getItem('role');
+    let role = localStorage.getItem('role');
     const navigate = useNavigate();
 
     const [username, setUsername] = useState('');
@@ -13,11 +14,11 @@ const Login = () => {
         event.preventDefault();
         const success = await login(username, password);
         if(success === true){
-            const updatedRole = localStorage.getItem('role');
-            if(updatedRole === 'admin'){
+            role = localStorage.getItem('role');
+            if(role === 'admin'){
                 navigate("/admin", {replace: true});
             }
-            else if(updatedRole === "user"){
+            else if(role === "user"){
                 navigate("/user", {replace: true});
             }
         }
@@ -33,18 +34,18 @@ const Login = () => {
     };
 
     const LoginForm = (
-        <form onSubmit={handleSubmit} method="post">
+        <form onSubmit={handleSubmit} method="post" className = {styles.form}>
             <label>
-                Username
-                <input type="text" onChange={handleUsernameChange} name="username" placeholder="Ingrese username o correo" />
+                Usuario
+                <input type="text" onChange={handleUsernameChange} name="username" placeholder="Ingrese username o correo"  value={username}/>
             </label>
 
             <label>
-                Password
-                <input type="text" onChange={handlePasswordChange} name="password" placeholder="Ingrese contraseña" />
+                Contraseña
+                <input type="password" onChange={handlePasswordChange} name="password" placeholder="Ingrese contraseña" value={password} />
             </label>
 
-            <input type="submit" value="Ingresar" />
+            <input type="submit" value="Ingresar"  className={styles.button}/>
         </form>
     );
 

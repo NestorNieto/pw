@@ -11,8 +11,8 @@ const UserHome = () => {
     const {username, token} = getUserData();
     const [page, setPage] = useState(0);
     const [posts, setPosts] = useState([]);
-    const isLastPage = () => page === lastPage - 1;
-    const isFirstPage = () => page === 0;
+    const isLastPage =  page === lastPage - 2;
+    const isFirstPage =  page === 0;
     const prevPage = () => setPage(page - 1);
     const nextPage = () => setPage(page + 1);
     const favoritesHandler = () => {};
@@ -30,8 +30,8 @@ const UserHome = () => {
         <div className={styles.posts_header}>
             <h1>Bienvenido {username}</h1>
                 <div className={styles.buttons}>
-                {!isFirstPage() && <button onClick={prevPage}><Left size = {size}/></button>}
-                {!isLastPage() && <button onClick={nextPage}><Right size = {size} /></button>}
+                {!isFirstPage && <button onClick={prevPage}><Left size = {size}/></button>}
+                {!isLastPage && <button onClick={nextPage}><Right size = {size} /></button>}
                 <button onClick={favoritesHandler}><Bookmark size = {size} /></button>
                 </div>
             </div>

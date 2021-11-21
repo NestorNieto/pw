@@ -14,7 +14,6 @@ const AdminHome = () => {
     const size = 32;
     const navigate = useNavigate();
     const {token, username} = getUserData();
-    const [page, setPage] = useState(0);
     const [posts, setPosts] = useState([]);
     
     useEffect(() => {
