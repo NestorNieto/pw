@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { logOut } from '../../Services/Authorization.service';
 
 import styles from './Navbar.module.css';
-const Navbar = (props) => {
+const Navbar = () => {
     const size = 24;
     return (
         <nav className={styles.main_navbar}>

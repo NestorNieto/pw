@@ -1,6 +1,7 @@
 import {
-    API_BASE_URL,
-    SignIn
+    SignIn,
+    verifyToken,
+    getUserData
 } from "./Helper";
 export const login = async (username, password) => {
     try {
@@ -26,26 +27,32 @@ export const logOut = () => {
     localStorage.removeItem('username');
 };
 
-export const verifyToken = async (token) => {
-    try {
-        const URL = `${API_BASE_URL}/auth/whoami`;
-        const request = {
-            "method": "GET",
-            "headers": {
-                "Authorization": `Bearer ${token}`
+export const isUser = async () => {
+    const {
+        token,
+        username: storedUsername,
+        role: storedRole
+    } = getUserData();
+    
+    const {
+        username,
+        role
+    } = await verifyToken(token);
+
+    const identified = storedUsername === username && storedRole !== role;
+    if(!identified){
+
+        const navObj = {
+            route: '/error',
+            options: {
+                replace: true,
+                state: {
+                    error: "No se pudo verificar la identidad 💀.",
+                    logOut: true
+                }
             }
-        }
-        const response = await fetch (URL, request);
-        if(response.ok){
-            const {username, role} = response.json();
-            return{username: username, role: role};
-        }
-        else{
-            throw Error("El token no ha sido verificado.");
-        }
-        
-    } catch (error) {
-        console.error(error);
-        return {}
+        };
+        return {identified, navObj};
     }
+    return {identified};
 }

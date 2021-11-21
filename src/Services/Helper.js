@@ -88,7 +88,7 @@ export const fetchOnePost = async (token, postId) => {
 export const getUserData = () => {
     const token = localStorage.getItem('token');
     const role = localStorage.getItem('role');
-    const username = localStorage.getItem('username')
+    const username = localStorage.getItem('username');
 
     return {
         token,
@@ -201,4 +201,33 @@ export const updatePost = async (token, title, description, image, postId) => {
         throw new Error(error);
     }
 
+}
+
+export const verifyToken = async (token) => {
+    try {
+        const URL = `${API_BASE_URL}/auth/whoami`;
+        const request = {
+            "method": "GET",
+            "headers": {
+                "Authorization": `Bearer ${token}`
+            }
+        }
+        const response = await fetch(URL, request);
+        if (response.ok) {
+            const {
+                username,
+                role
+            } = await response.json();
+            return {
+                username: username,
+                role: role
+            };
+        } else {
+            throw Error("El token no ha sido verificado.");
+        }
+
+    } catch (error) {
+        console.error(error);
+        return {}
+    }
 }

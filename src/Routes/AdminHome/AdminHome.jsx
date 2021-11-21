@@ -7,6 +7,7 @@ import { getUserData } from '../../Services/Helper';
 import AdminPost from '../../Components/Post/AdminPost';
 
 const AdminHome = () => {
+
     const ToAdd = () => {
         navigate("/create", {replace: true})
     };
