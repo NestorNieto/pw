@@ -39,7 +39,8 @@ export const isUser = async () => {
         role
     } = await verifyToken(token);
 
-    const identified = storedUsername === username && storedRole === role;
+    const identified = storedUsername.includes(username) && storedRole === role;
+    
     if(!identified){
 
         const navObj = {
