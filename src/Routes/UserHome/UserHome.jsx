@@ -6,7 +6,6 @@ import { AiFillLeftSquare as Left, AiFillRightSquare as Right } from 'react-icon
 import styles from './UserHome.module.css';
 import UserPost from "../../Components/Post/UserPost";
 import { useNavigate } from "react-router-dom";
-import { isUser } from '../../Services/Authorization.service'
 
 const UserHome = () => {
     const navigate = useNavigate();
@@ -24,13 +23,6 @@ const UserHome = () => {
         navigate("/bookmarks", { replace: true })
     };
     useEffect(() => {
-        
-        const authorized = async () => {
-            const { identified, navObj } = await isUser();
-            if (!identified) {
-                navigate(navObj.route, navObj.options);
-            }
-        };
 
         const getPost = async () => {
             const favorites = await getAllFavoritesPost(token);
@@ -44,10 +36,8 @@ const UserHome = () => {
             setPosts(modifiedPost);
             setLastPage(pages);
         };
-
-        authorized();
         getPost();
-    }, [token, page, navigate]);
+    }, [token, page]);
     return (
         <section className={styles.post_wrapper}>
             <div className={styles.posts_header}>
