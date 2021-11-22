@@ -16,25 +16,29 @@ const AdminHome = () => {
     const navigate = useNavigate();
     const {token, username} = getUserData();
     const [posts, setPosts] = useState([]);
-    
+    const [page, setPage] = useState(0);
+    const prevPage = () => setPage(page - 1);
+    const nextPage = () => setPage(page + 1);
+    //const isLastPage = page === lastPage - 2; // Error de paginacion en API
+    const isFirstPage = page === 0;
+
     useEffect(() => {
         const getPostOwned = async () => {
-            const response = await getOwnedPost(token, 0);
+            const response = await getOwnedPost(token, page);
             setPosts(response.data);
-            console.table(response);
         };
 
         getPostOwned();
         
-    }, [token]);
+    }, [token,page]);
 
     return (
         <section className={styles.post_wrapper}>
             <div className={styles.posts_header}>
                 <h1>Post de {username} </h1>
                 <div className={styles.buttons}>
-                <button><Left size = {size}/></button>
-                <button><Right size = {size} /></button>
+                {!isFirstPage && <button onClick={prevPage}><Left size = {size}/></button>}
+                <button onClick={nextPage}><Right size = {size} /></button>
                 <button onClick={ToAdd}><Add size = {size} /></button>
                 </div>
             </div>

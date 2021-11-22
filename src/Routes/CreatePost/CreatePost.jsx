@@ -1,21 +1,24 @@
 import { useEffect, useState } from "react";
-import { useParams, useLocation } from "react-router-dom";
+import { useParams, useLocation, useNavigate } from "react-router-dom";
 import styles from "./CreatePost.module.css";
 import Notification from "../../Components/Notification/Notification";
 import {Create, updateAdminPost } from '../../Services/Post.services'
 import { getUserData } from "../../Services/Helper";
+import {hasMinChars, hasMinMaxChars, isImageUrl} from '../../Validations/strings';
 
 const CreatePost = () => {
+    const navigate = useNavigate();
     const {state} = useLocation();
     const {token} = getUserData();
     const { postId } = useParams();
     const [showNotification, SetShowNotification] = useState(false);
+    const [loadedImage, setLoadedImage] = useState(false);
     const [titulo, setTitulo] = useState('');
     const [descripcion, setDescripcion] = useState('');
     const [url, setUrl] = useState(' ');
     const [message, setMessage] = useState("");
-    const errorHandler = (event) => event.target.style.display = 'none';
-    const loadHandler = (event) => event.target.style.display='inline-block';
+    const errorHandler = (event) => {event.target.style.display = 'none'; setLoadedImage(false)};
+    const loadHandler = (event) => {event.target.style.display = 'inline-block'; setLoadedImage(true)};
     const titleHandler = (event) => {
         setTitulo(event.target.value);
     };
@@ -27,25 +30,57 @@ const CreatePost = () => {
         setUrl(event.target.value);
     };
 
-    const submitHandler = async (event) =>{
-        event.preventDefault();
-        const post = postId? await updateAdminPost(token,titulo,descripcion,url,postId): await Create(token, titulo, descripcion, url);
-        console.log(post);
+    const titleIsValid = hasMinMaxChars(titulo, 8, 32);
+    const descriptionIsValid = hasMinChars(descripcion, 8);
+    const imageIsValid = isImageUrl(url) && loadedImage;
+
+    const clean = () => {
         setTitulo('');
         setDescripcion('');
         setUrl('');
+    }
+
+    const submitHandler = async (event) =>{
+        event.preventDefault();
+        if(!titleIsValid){
+            alert("titulo");
+            return;
+        }
+        else if(!descriptionIsValid){
+            alert("descriocion");
+            return;
+        }
+        else if(!imageIsValid){
+            alert("imagen");
+            return;
+        }else{
+            if(postId){
+                await updateAdminPost(token,titulo,descripcion,url,postId);
+            }
+            else{
+                await Create(token, titulo, descripcion, url);
+            }
+            navigate('/', {replace:true})
+        }
+        clean();
+
         setMessage(postId? 'Editado con éxito': 'Creado con éxito');
         SetShowNotification(true);
     };
 
     useEffect(() => {
-        if(postId){
+        console.log('a');
+        if(postId && state){
             const {title, description, image} = state;
-            setTitulo(title);
-            setDescripcion(description);
-            setUrl(image);
+                setTitulo(title);
+                setDescripcion(description);
+                setUrl(image);
         }
-    }, [postId,state]);
+        else{
+            navigate('/error', { replace: true, state: { error: "Post no existe." } })
+        }
+
+    }, [postId,state,navigate]);
 
     return (
         <>

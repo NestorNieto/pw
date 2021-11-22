@@ -12,7 +12,7 @@ import {
 
 export const getOwnedPost = async (token, page) => {
     try {
-        const limit = 5;
+        const limit = 2;
         const serverResponse = await getOwned(token, limit, page);
         return serverResponse;
     } catch (error) {

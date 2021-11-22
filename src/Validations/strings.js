@@ -10,3 +10,7 @@ export const isNotEmpty = (str) => {
     return str && str.length !== 0;
 }
 
+export const isImageUrl = (str) => {
+    const imagePattern = new RegExp('.*\.(gif|jpe?g|bmp|png)$');
+    return imagePattern.test(str);
+}
