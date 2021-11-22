@@ -15,7 +15,7 @@ const UserHome = () => {
     const { username, token } = getUserData();
     const [page, setPage] = useState(0);
     const [posts, setPosts] = useState([]);
-    const isLastPage = page === lastPage - 2;
+    const isLastPage = page === lastPage - 2; // Error de paginacion en API
     const isFirstPage = page === 0;
     const prevPage = () => setPage(page - 1);
     const nextPage = () => setPage(page + 1);

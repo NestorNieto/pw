@@ -11,7 +11,7 @@ const Error = ({error}) => {
             if(state.logOut){
                 logOut();
             }
-        }, 3000);
+        }, 2500);
     }, [state.logOut]);
     
     const message = state?.error === undefined ? error : state.error;

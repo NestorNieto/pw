@@ -9,7 +9,6 @@ const CommentBar = ({id : postId}) => {
     const [text, setText] = useState('');
     const textChangeHandler = (event) => {setText(event.target.value)};
     const commentHandler = (event) => {
-        console.log('simon'); 
         setText('');
         postComment(token,postId, text);
     };

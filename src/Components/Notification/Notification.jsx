@@ -5,7 +5,7 @@ const Notification = ({message}) => {
         return <div className = {styles.container}>{message}</div>;
     }
     else{
-        return <div className={styles.empty}/>
+        return null;
     }
 };
 
