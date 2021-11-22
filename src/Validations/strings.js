@@ -11,6 +11,6 @@ export const isNotEmpty = (str) => {
 }
 
 export const isImageUrl = (str) => {
-    const imagePattern = new RegExp('.*\.(gif|jpe?g|bmp|png)$');
+    const imagePattern = new RegExp(".*\.(gif|jpe?g|bmp|png)$");
     return imagePattern.test(str);
 }

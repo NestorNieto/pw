@@ -11,7 +11,7 @@ const CreatePost = () => {
     const {state} = useLocation();
     const {token} = getUserData();
     const { postId } = useParams();
-    const [showNotification, SetShowNotification] = useState(false);
+    const [notify, setNotify] = useState(true);
     const [loadedImage, setLoadedImage] = useState(false);
     const [titulo, setTitulo] = useState('');
     const [descripcion, setDescripcion] = useState('');
@@ -42,16 +42,17 @@ const CreatePost = () => {
 
     const submitHandler = async (event) =>{
         event.preventDefault();
+        setNotify(false);
         if(!titleIsValid){
-            alert("titulo");
+            setMessage("El título debe tener entre 8 y 32 caracteres 💻.");
             return;
         }
         else if(!descriptionIsValid){
-            alert("descriocion");
+            setMessage("La descripción debe tener mínimo 8 caracteres 📎.");
             return;
         }
         else if(!imageIsValid){
-            alert("imagen");
+            setMessage("Debes ingresar la url de una imagen 📸.");
             return;
         }else{
             if(postId){
@@ -65,22 +66,21 @@ const CreatePost = () => {
         clean();
 
         setMessage(postId? 'Editado con éxito': 'Creado con éxito');
-        SetShowNotification(true);
     };
 
     useEffect(() => {
-        console.log('a');
+        setNotify(true);
         if(postId && state){
             const {title, description, image} = state;
                 setTitulo(title);
                 setDescripcion(description);
                 setUrl(image);
         }
-        else{
-            navigate('/error', { replace: true, state: { error: "Post no existe." } })
+        else if(postId && !state){
+            navigate('/error', { replace: true, state: { error: "Post no existe." } });
         }
 
-    }, [postId,state,navigate]);
+    }, [postId,state,navigate, notify]);
 
     return (
         <>
@@ -104,7 +104,7 @@ const CreatePost = () => {
                 <input type="submit" value={postId? "Editar post" : "Crear post"} className={styles.button} onClick={submitHandler}/>
                 
             </form>
-            {showNotification && <Notification message={message}/>}
+            {notify && <Notification message={message}/>}
 
         </>
     );
