@@ -29,7 +29,7 @@ const Login = () => {
                 }
             }
             else {
-                setMessage("Error en login 🔑");// Notificacion
+                setMessage("Error en login 🔑");
             }
         }
         else{
