@@ -16,15 +16,17 @@ const AdminHome = () => {
     const navigate = useNavigate();
     const {token, username} = getUserData();
     const [posts, setPosts] = useState([]);
+    const [lastPage, setLastPage] = useState(0);
     const [page, setPage] = useState(0);
     const prevPage = () => setPage(page - 1);
     const nextPage = () => setPage(page + 1);
-    //const isLastPage = page === lastPage - 2; // Error de paginacion en API
+    const isLastPage = page === lastPage - 1; // Error de paginacion en API
     const isFirstPage = page === 0;
 
     useEffect(() => {
         const getPostOwned = async () => {
             const response = await getOwnedPost(token, page);
+            setLastPage(response.pages);
             setPosts(response.data);
         };
 
@@ -38,7 +40,7 @@ const AdminHome = () => {
                 <h1>Post de {username} </h1>
                 <div className={styles.buttons}>
                 {!isFirstPage && <button onClick={prevPage}><Left size = {iconSize}/></button>}
-                <button onClick={nextPage}><Right size = {iconSize} /></button>
+                {!isLastPage && <button onClick={nextPage}><Right size = {iconSize} /></button>}
                 <button onClick={ToAdd}><Add size = {iconSize} /></button>
                 </div>
             </div>
