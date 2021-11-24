@@ -12,7 +12,7 @@ const AdminHome = () => {
         navigate("/create", {replace: true})
     };
 
-    const size = 32;
+    const iconSize = 32;
     const navigate = useNavigate();
     const {token, username} = getUserData();
     const [posts, setPosts] = useState([]);
@@ -37,9 +37,9 @@ const AdminHome = () => {
             <div className={styles.posts_header}>
                 <h1>Post de {username} </h1>
                 <div className={styles.buttons}>
-                {!isFirstPage && <button onClick={prevPage}><Left size = {size}/></button>}
-                <button onClick={nextPage}><Right size = {size} /></button>
-                <button onClick={ToAdd}><Add size = {size} /></button>
+                {!isFirstPage && <button onClick={prevPage}><Left size = {iconSize}/></button>}
+                <button onClick={nextPage}><Right size = {iconSize} /></button>
+                <button onClick={ToAdd}><Add size = {iconSize} /></button>
                 </div>
             </div>
             {posts.map( post => {

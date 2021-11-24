@@ -12,7 +12,7 @@ const Error = ({error}) => {
                 logOut();
             }
         }, 2500);
-    }, [state.logOut]);
+    }, [state?.logOut]);
     
     const message = state?.error === undefined ? error : state.error;
     return(

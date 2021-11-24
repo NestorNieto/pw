@@ -1,11 +1,12 @@
 import { useEffect } from "react";
 import { Outlet , Navigate, useLocation, useNavigate } from "react-router-dom";
 import { isUser } from "../../Services/Authorization.service";
+import { getUserData } from "../../Services/Helper";
 
 const ProtectedRoute = ({role}) => {
     const location = useLocation();
     const navigate = useNavigate();
-    const storedRole = localStorage.getItem('role');
+    const {role : storedRole} = getUserData();
 
     useEffect(() =>{
         const authorized = async () => {

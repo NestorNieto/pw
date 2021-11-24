@@ -10,12 +10,12 @@ import { useNavigate } from "react-router-dom";
 const UserHome = () => {
     const navigate = useNavigate();
 
-    const size = 24;
+    const iconSize = 24;
     const [lastPage, setLastPage] = useState(0);
     const { username, token } = getUserData();
     const [page, setPage] = useState(0);
     const [posts, setPosts] = useState([]);
-    const isLastPage = page === lastPage - 2; // Error de paginacion en API
+    const isLastPage = page === lastPage - 1; // Error de paginacion en API
     const isFirstPage = page === 0;
     const prevPage = () => setPage(page - 1);
     const nextPage = () => setPage(page + 1);
@@ -31,8 +31,7 @@ const UserHome = () => {
                 post.favorite = favorites.indexOf(post._id) !== -1;
                 return post;
             });
-
-            console.log(data);
+            
             setPosts(modifiedPost);
             setLastPage(pages);
         };
@@ -43,9 +42,9 @@ const UserHome = () => {
             <div className={styles.posts_header}>
                 <h1>Bienvenido {username}</h1>
                 <div className={styles.buttons}>
-                    {!isFirstPage && <button onClick={prevPage}><Left size={size} /></button>}
-                    {!isLastPage && <button onClick={nextPage}><Right size={size} /></button>}
-                    <button onClick={ToBookmarks}><Bookmark size={size} /></button>
+                    {!isFirstPage && <button onClick={prevPage}><Left size={iconSize} /></button>}
+                    {!isLastPage && <button onClick={nextPage}><Right size={iconSize} /></button>}
+                    <button onClick={ToBookmarks}><Bookmark size={iconSize} /></button>
                 </div>
             </div>
             {

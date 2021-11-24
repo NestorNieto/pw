@@ -23,7 +23,7 @@ export const getOwnedPost = async (token, page) => {
 
 export const getAllPosts = async (token, page) => {
     try {
-        const limit = 5;
+        const limit = 3;
         const serverResponse = await fetchAllPost(token, limit, page);
         return serverResponse;
     } catch (error) {

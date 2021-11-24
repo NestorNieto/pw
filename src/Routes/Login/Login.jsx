@@ -14,12 +14,13 @@ const Login = () => {
     const [message, setMessage] = useState('');
     const [notify, setNotify] = useState(true);
     const isValid = (str) => isNotEmpty(str);
+    
     const handleSubmit = async (event) => {
         event.preventDefault();
         setNotify(false);
         if (isValid(username) && isValid(password)) {
             const success = await login(username, password);
-            if (success === true) {
+            if (success) {
                 const { role } = getUserData();
                 if (role === 'admin') {
                     navigate("/admin", { replace: true });

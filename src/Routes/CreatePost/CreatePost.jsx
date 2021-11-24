@@ -19,6 +19,7 @@ const CreatePost = () => {
     const [message, setMessage] = useState("");
     const errorHandler = (event) => {event.target.style.display = 'none'; setLoadedImage(false)};
     const loadHandler = (event) => {event.target.style.display = 'inline-block'; setLoadedImage(true)};
+    
     const titleHandler = (event) => {
         setTitulo(event.target.value);
     };
@@ -43,6 +44,7 @@ const CreatePost = () => {
     const submitHandler = async (event) =>{
         event.preventDefault();
         setNotify(false);
+        
         if(!titleIsValid){
             setMessage("El título debe tener entre 8 y 32 caracteres 💻.");
             return;
