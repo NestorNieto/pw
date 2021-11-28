@@ -44,7 +44,7 @@ const AdminHome = () => {
                 <button onClick={ToAdd}><Add size = {iconSize} /></button>
                 </div>
             </div>
-            {posts.map( post => {
+            {posts?.map( post => {
                 return (
                     <AdminPost data={post} key={post._id}/>
                 );

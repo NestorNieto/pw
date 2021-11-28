@@ -23,7 +23,6 @@ const UserHome = () => {
         navigate("/bookmarks", { replace: true })
     };
     useEffect(() => {
-
         const getPost = async () => {
             const favorites = await getAllFavoritesPost(token);
             const { data, pages } = await getAllPosts(token, page);
@@ -31,7 +30,6 @@ const UserHome = () => {
                 post.favorite = favorites.indexOf(post._id) !== -1;
                 return post;
             });
-            
             setPosts(modifiedPost);
             setLastPage(pages);
         };

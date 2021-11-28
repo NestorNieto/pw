@@ -23,7 +23,7 @@ const GetPost = () => {
             setPost(fetchedPost);
         };
         getPost();
-    });
+    },[navigate, postId, token]);
 
     if (!objIsEmpty(post)) {
         return (
