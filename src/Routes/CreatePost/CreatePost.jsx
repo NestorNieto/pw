@@ -86,7 +86,7 @@ const CreatePost = () => {
 
     return (
         <>
-            <h1>{postId ? `Editar post ${postId}` : "Crear nuevo post"}</h1>
+            <h1>{postId ? "Editar post" : "Crear nuevo post"}</h1>
             <form className={styles.post_form}>
                 <div className= {styles.labels}>
                     <label>

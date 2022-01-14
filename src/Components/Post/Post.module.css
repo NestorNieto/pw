@@ -1,8 +1,7 @@
 .post{
     border-radius: 10px;
     min-height: 100px;
-    min-width: 500px;
-    max-width: 500px;
+    width: min(90vw, 500px);
     margin: 20px 0px;
     color: var(--background);
     background-color: var(--primary);
@@ -30,7 +29,7 @@
 
 .img_wrapper img{
     height: 100%;
-    max-width: 500px;
+    width: min(90vw, 500px);
 }
 
 .action{
@@ -71,4 +70,14 @@
 
 .filled{
     color: var(--focus);
+}
+
+@media (max-width: 400px){
+    .post h2{
+        font-size: 14px;
+    }
+
+    .post p{
+        font-size: 12px;
+    }
 }

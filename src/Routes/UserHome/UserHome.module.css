@@ -9,7 +9,7 @@
 .posts_header{
     display: flex;
     justify-content: space-between;
-    width: 500px;
+    width: min(90vw, 500px);
     border-bottom: 4px solid var(--primary);
     margin-top: 3vh;
     padding: 0;
@@ -39,4 +39,10 @@
     border: 0;
     color: var(--focus);
     cursor: pointer;
+}
+
+@media(max-width: 400px){
+    .posts_header h1{
+        font-size: medium;
+    }
 }

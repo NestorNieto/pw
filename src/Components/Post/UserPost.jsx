@@ -13,9 +13,9 @@ const UserPost = ({ data: post }) => {
     const { token, username } = getUserData();
     const iconSize = 24;
     const navigate = useNavigate();
-    const initialLiked = post.likes.filter(like => like.username === username).length !== 0;
+    const initialLiked = post.likes?.filter(like => like.username === username).length !== 0;
     const likes = post.likes?.length;
-    const comments = post.comments.length;
+    const comments = post.comments?.length;
     const [liked, setLiked] = useState(initialLiked);
     const [bookmarked, setBookmark] = useState(location?.state?.favorite || post.favorite);
     const [message, setMessage] = useState('');

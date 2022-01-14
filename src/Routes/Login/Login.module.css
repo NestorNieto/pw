@@ -7,7 +7,7 @@
     justify-content: center;
     align-self: center;
     flex-wrap: wrap;
-    width: 600px;
+    width: min(85vw, 600px);
     background-color: var(--primary);
     font-size: x-large;
     color: var(--secondary);
@@ -47,4 +47,12 @@
     outline: none;
     background-color: var(--focus);
     cursor: pointer;
+}
+
+@media (max-width: 400px) {
+    .form label{
+        margin: 0;
+        padding:30px 0px;
+        width: 90%;
+    }
 }

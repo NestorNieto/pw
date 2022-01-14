@@ -3,6 +3,7 @@ import UserPost from '../../Components/Post/UserPost';
 import { getUserData } from '../../Services/Helper'
 import { getAllFavoritesPost, getOnePost } from '../../Services/Post.services'
 import styles from './Bookmarks.module.css';
+import {objIsEmpty} from '../../Validations/object';
 
 const Bookmarks = () => {
     const { token } = getUserData();
@@ -15,7 +16,8 @@ const Bookmarks = () => {
                 promises.push(getOnePost(token, postId));
             });
             const favPost = await Promise.all(promises);
-            const modifiedPosts = await favPost.map(post => {post.favorite=true; return post;});
+            const onlyFoundPost = await favPost.filter(post => !objIsEmpty(post))
+            const modifiedPosts = await onlyFoundPost.map(post => {post.favorite=true; return post;});
             setPosts(modifiedPosts);
         };
 
