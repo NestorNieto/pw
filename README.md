@@ -1,6 +1,10 @@
 # Social Network App 💅
 ![Desktop Screenshot](desktop-screenshot.png)
 
+## Video demo 🎥
+![Video demo](video-demo.gif)
+
+
 ## Live Demo 🧬
 The web app is hosted in GitHub Pages; you can see it 👉 [Here](https://nestornieto.github.io/pw/) 👈.
 

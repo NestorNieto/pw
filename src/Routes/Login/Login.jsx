@@ -58,7 +58,7 @@ const Login = () => {
 
             <label>
                 Contraseña
-                <input type="text" onChange={handlePasswordChange} name="password" placeholder="Ingrese contraseña" value={password} />
+                <input type="password" onChange={handlePasswordChange} name="password" placeholder="Ingrese contraseña" value={password} />
             </label>
 
             <input type="submit" value="Ingresar" className={styles.button} />
